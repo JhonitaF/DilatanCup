@@ -1,0 +1,182 @@
+.fondo-pagina {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+}
+.filtro-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+    z-index: -1;
+}
+.contenedor-comunicado {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 3rem 2rem;
+    background-color: rgba(15, 18, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--borde-sutil);
+    border-radius: 8px; 
+    box-shadow: var(--sombra-premium);
+    text-align: center;
+}
+.comunicado-header {
+    margin-bottom: 2.5rem;
+}
+
+.alerta-transmision {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--amarillo-alerta);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    animation: parpadeo-alerta 2s infinite ease-in-out;
+}
+
+.comunicado-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--blanco-puro);
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+.linea-sangre {
+    width: 120px;
+    height: 4px;
+    background-color: var(--rojo-sangre); 
+    margin: 0 auto;
+    border-radius: 2px;
+}
+.tarjeta-mensaje {
+    background-color: rgba(30, 35, 40, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 4px solid var(--rojo-sangre); 
+    padding: 2.5rem 2rem;
+    border-radius: 4px;
+    margin-bottom: 3rem;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.icono-alerta {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 8px rgba(234, 88, 12, 0.4));
+}
+
+.tarjeta-mensaje h2 {
+    color: var(--blanco-puro);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tarjeta-mensaje p {
+    font-size: 1.1rem;
+    color: var(--gris-claro-cemento);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.tarjeta-mensaje strong {
+    color: var(--blanco-puro);
+    border-bottom: 1px dashed var(--amarillo-alerta);
+    padding-bottom: 1px;
+}
+.caja-agradecimiento {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.caja-agradecimiento p {
+    font-size: 1rem;
+    color: var(--gris-apagado);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.firma-organizacion {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--amarillo-alerta);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bloque-boton-discord {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-comunicado-discord {
+    display: inline-block;
+    background: linear-gradient(135deg, #5865F2 0%, #404eed 100%);
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1.1rem 2.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.btn-comunicado-discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(88, 101, 242, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-comunicado-discord:active {
+    transform: translateY(0);
+}
+@keyframes parpadeo-alerta {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+@media (max-width: 768px) {
+    .contenedor-comunicado {
+        padding: 2rem 1.25rem;
+        border-radius: 4px;
+    }
+
+    .comunicado-header h1 {
+        font-size: 1.9rem;
+    }
+
+    .tarjeta-mensaje {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .tarjeta-mensaje h2 {
+        font-size: 1.3rem;
+    }
+
+    .tarjeta-mensaje p {
+        font-size: 0.95rem;
+    }
+
+    .btn-comunicado-discord {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}   

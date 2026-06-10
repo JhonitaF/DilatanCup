@@ -1,0 +1,299 @@
+.fondo-pagina {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2; 
+}
+.filtro-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65));
+    z-index: -1; 
+}
+.hero-seccion {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
+}
+.hero-seccion::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+.etiqueta-torneo {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--celeste-profundo);
+    background-color: var(--celeste-glare);
+    padding: 0.5rem 1.2rem;
+    border-radius: 99px;
+    border: var(--borde-sutil);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.04);
+}
+h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--azul-oscuro);
+    letter-spacing: -1.5px;
+    margin-bottom: 1.5rem;
+}
+h1 span {
+    background: var(--degradado-principal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.colaboracion-texto {
+    font-size: 1.2rem;
+    color: var(--gris-claro-cemento);
+    margin-top: -0.5rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.colaboracion-texto strong {
+    color: var(--amarillo-alerta); 
+    font-weight: 700;
+}
+.caja-descripcion-l4d {
+    background-color: rgba(15, 18, 20, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 2rem;
+    max-width: 850px;
+    margin: 0 auto 2.5rem auto;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.caja-descripcion-l4d p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--blanco-puro);
+    margin-bottom: 2rem;
+}
+
+.detalles-rapidos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    padding-top: 1.5rem;
+    text-align: left;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icono-det {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.detalle-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--amarillo-alerta);
+    text-transform: uppercase;
+}
+
+.detalle-item p {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--blanco-puro);
+}
+
+.detalle-item small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gris-apagado);
+}
+
+.contenedor-premios-inicio {
+    max-width: 850px;
+    margin: 0 auto 3rem auto;
+}
+
+.contenedor-premios-inicio h2,
+.contenedor-tutorial-video h2 {
+    font-size: 1.4rem;
+    color: var(--blanco-puro);
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.premios-inicio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.premio-bloque {
+    background: rgba(20, 24, 28, 0.85);
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+.premio-bloque:hover {
+    transform: translateY(-3px);
+}
+.premio-bloque.oro { border-top: 3px solid #ffd700; }
+.premio-bloque.plata { border-top: 3px solid #c0c0c0; }
+.premio-bloque.bronce { border-top: 3px solid #cd7f32; }
+
+.medalla {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gris-claro-cemento);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.monto {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--blanco-puro);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.contenedor-tutorial-video {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.instruccion-capitan {
+    font-size: 1.05rem;
+    color: var(--gris-claro-cemento);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+.reproductor-video-bunker {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background-color: #000;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+}
+.reproductor-video-bunker iframe,
+.reproductor-video-bunker video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.hero-botones {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.btn-secundario {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rojo-sangre) 0%, #990000 100%);
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    transition: all 0.2s ease;
+}
+
+
+.btn-secundario:hover {
+    background-color: var(--celeste-glare);
+    border-color: var(--celeste-brillante);
+    color: var(--azul-oscuro);
+    transform: translateY(-1px);
+}
+.btn-principal-tutorial {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rojo-sangre) 0%, #990000 100%);
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-principal-tutorial:hover {
+    background-color: var(--celeste-glare);
+    border-color: var(--celeste-brillante);
+    color: var(--azul-oscuro);
+    transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    .hero-botones {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn-secundario,
+    .btn-principal-tutorial {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .detalles-rapidos-grid {
+        grid-template-columns: 1fr; 
+        gap: 1.25rem;
+    }
+
+    .premios-inicio-grid {
+        grid-template-columns: 1fr; 
+        gap: 0.85rem;
+    }
+
+    .caja-descripcion-l4d {
+        padding: 1.25rem;
+    }
+
+    .monto {
+        font-size: 1.5rem;
+    }
+}

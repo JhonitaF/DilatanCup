@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción | Dilantan Cup</title>
+    <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/inscripciones.css">
+    <link rel="icon" href="assets/img/Logopng.png">
+    <style>
+    </style>
+</head>
+<body>
+    <img src="assets/img/fondo.png" alt="Fondo Apocalíptico L4D2" class="fondo-pagina">
+    <div class="filtro-fondo"></div>
+    <div id="modal-reglas" class="bunker-modal-overlay">
+        <div class="bunker-modal-contenido">
+            <div class="bunker-modal-header">
+                <h2>⚠️ CONTROL DE ACCESO AL TORNEO</h2>
+            </div>
+            <p class="bunker-modal-mensaje">
+                Para poder inscribir a tu equipo al torneo necesitamos que puedas leer las reglas y detalles del torneo si ya lo leiste dale al boton de aceptar caso contrario dale al boton de leer reglas y detalles del torneo
+            </p>
+            <div class="bunker-modal-acciones">
+                <button id="btn-aceptar-reglas" class="btn-modal-aceptar">✅ Aceptar y Continuar</button>
+                <a href="reglas.html" class="btn-modal-leer">📖 Leer Reglas y Detalles</a>
+            </div>
+        </div>
+    </div>
+    <header class="header-principal">
+        <div class="nav-contenedor">
+            <a href="index.html" class="logo-contenedor">
+                <img src="assets/img/Logopng.png" alt="Logo Dilantan Cup" class="logo-imagen">
+                <span class="logo-texto">Dilantan<span>Cup</span></span>
+            </a>
+            <nav class="menu-navegacion">
+                <a href="index.html" class="enlace-nav">Inicio</a>
+                <a href="reglas.html" class="enlace-nav">Reglas</a>
+                <a href="equipo.html" class="enlace-nav">Equipos</a>
+            </nav>
+            <div class="accion-inscripcion">
+                <a href="inscripcion.html" class="btn-inscripcion activo">Inscribirse</a>
+            </div>
+        </div>
+    </header>
+        <main class="contenido-principal">
+        <div class="contenedor-inscripcion">
+            <div class="formulario-header">
+                <h1>Formulario de Inscripción</h1>
+                <p class="costo">Costo por Equipo: <span>50 Bs</span></p>
+            </div>
+            <form id="form-torneo" class="bunker-form" style="display: none;">
+                <!-- SECCIÓN 01: Identificación del Equipo -->
+                <div class="seccion-bloque">
+                    <h2><span class="numero-t">01</span> Identificación del Equipo</h2>
+                    <div class="grid-campos-dos">
+                        <div class="grupo-campo">
+                            <label for="nombre-equipo">Nombre del Equipo*</label>
+                            <input type="text" id="nombre-equipo" name="nombre_equipo" placeholder="Ej: Zero Blunders" required>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="tag-equipo">TAG del Equipo *</label>
+                            <input type="text" id="tag-equipo" name="tag_equipo" placeholder="Ej: [ZB]" required>
+                        </div>
+                    </div>
+                    <div class="campo-comprobante" style="margin-top: 1.5rem;">
+                        <label class="btn-subir-comprobante" for="logo-equipo-file" style="border-color: #eab308;">
+                            🛡️ Seleccionar Logo del Equipo (PNG/JPG) *
+                        </label>
+                        <input type="file" id="logo-equipo-file" name="logo_equipo" accept="image/*" required style="display: none;">
+                        <p id="nombre-logo" class="nombre-archivo-texto" style="color: #eab308;"></p>
+                    </div>
+                    <div id="logo-preview-contenedor" class="bunker-preview-comprobante" style="display: none; border-left-color: #eab308; max-width: 250px;">
+                        <span class="etiqueta-preview" style="color: #eab308;">👁️ VISTA PREVIA DEL LOGO</span>
+                        <img id="img-logo-previa" src="" alt="Vista previa del logo" style="max-height: 200px; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 02: Líder / Capitán (Jugador 1) -->
+                <div class="seccion-bloque">
+                    <h2><span class="numero-t">02</span> Datos del Líder / Capitán (Jugador #1)</h2>
+                    <div class="sub-bloque-jugador" data-jugador="1">
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo">
+                                <label for="nombre-capitan">Nombre Completo *</label>
+                                <input type="text" id="nombre-capitan" name="j1_nombre" placeholder="Nombre completo real" required>
+                            </div>
+                            <div class="grupo-campo">
+                                <label for="edad-capitan">Edad *</label>
+                                <input type="number" id="edad-capitan" name="j1_edad" min="1" max="99" placeholder="Edad" required style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);">
+                            </div>
+                            <div class="grupo-campo">
+                                <label for="ci-capitan">Cédula de Identidad (CI) *</label>
+                                <input type="text" id="ci-capitan" name="j1_ci" placeholder="Nº de Documento" required>
+                            </div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo">
+                                <label for="tel-capitan">Número de Teléfono / WhatsApp *</label>
+                                <input type="tel" id="tel-capitan" name="j1_telefono" placeholder="Ej: 77545850" required>
+                            </div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo">
+                                <label for="nametag-capitan">NameTag del Jugador *</label>
+                                <input type="text" id="nametag-capitan" name="j1_nametag" placeholder="Nickname en el juego" required>
+                            </div>
+                            <div class="grupo-campo">
+                                <label for="steam-capitan">Código de amigo de Steam *</label>
+                                <input type="text" id="steam-capitan" name="j1_steam" placeholder="Ej: 123456789" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 03: Equipo Titular (Jugadores 2 al 4) -->
+                <div class="seccion-bloque">
+                    <h2><span class="numero-t">03</span> Equipo Titular (Campos Obligatorios)</h2>
+                    
+                    <!-- Jugador 2 -->
+                    <div class="sub-bloque-jugador bloque-lista-j" data-jugador="2">
+                        <h3 class="indicador-j">Jugador #2</h3>
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo"><label>Nombre Completo *</label><input type="text" name="j2_nombre" class="j-nombre" required></div>
+                            <div class="grupo-campo"><label>Edad *</label><input type="number" name="j2_edad" class="j-edad" min="1" required style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);"></div>
+                            <div class="grupo-campo"><label>Cédula de Identidad (CI) *</label><input type="text" name="j2_ci" class="j-ci" required></div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo"><label>Número de Teléfono *</label><input type="tel" name="j2_telefono" class="j-telefono" required></div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo"><label>NameTag del Jugador *</label><input type="text" name="j2_nametag" class="j-nametag" required></div>
+                            <div class="grupo-campo"><label>Código de amigo de Steam *</label><input type="text" name="j2_steam" class="j-steam" required></div>
+                        </div>
+                    </div>
+
+                    <!-- Jugador 3 -->
+                    <div class="sub-bloque-jugador bloque-lista-j" data-jugador="3">
+                        <h3 class="indicador-j">Jugador #3</h3>
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo"><label>Nombre Completo *</label><input type="text" name="j3_nombre" class="j-nombre" required></div>
+                            <div class="grupo-campo"><label>Edad *</label><input type="number" name="j3_edad" class="j-edad" min="1" required style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);"></div>
+                            <div class="grupo-campo"><label>Cédula de Identidad (CI) *</label><input type="text" name="j3_ci" class="j-ci" required></div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo"><label>Número de Teléfono *</label><input type="tel" name="j3_telefono" class="j-telefono" required></div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo"><label>NameTag del Jugador *</label><input type="text" name="j3_nametag" class="j-nametag" required></div>
+                            <div class="grupo-campo"><label>Código de amigo de Steam *</label><input type="text" name="j3_steam" class="j-steam" required></div>
+                        </div>
+                    </div>
+
+                    <!-- Jugador 4 -->
+                    <div class="sub-bloque-jugador bloque-lista-j" data-jugador="4">
+                        <h3 class="indicador-j">Jugador #4</h3>
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo"><label>Nombre Completo *</label><input type="text" name="j4_nombre" class="j-nombre" required></div>
+                            <div class="grupo-campo"><label>Edad *</label><input type="number" name="j4_edad" class="j-edad" min="1" required style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);"></div>
+                            <div class="grupo-campo"><label>Cédula de Identidad (CI) *</label><input type="text" name="j4_ci" class="j-ci" required></div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo"><label>Número de Teléfono *</label><input type="tel" name="j4_telefono" class="j-telefono" required></div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo"><label>NameTag del Jugador *</label><input type="text" name="j4_nametag" class="j-nametag" required></div>
+                            <div class="grupo-campo"><label>Código de amigo de Steam *</label><input type="text" name="j4_steam" class="j-steam" required></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 04: Suplentes / Relevos (Opcionales) -->
+                <div class="seccion-bloque">
+                    <h2><span class="numero-t">04</span> Suplentes / Relevos (Campos Opcionales)</h2>
+                    <p class="nota-suplente">Deje estos campos completamente vacíos si su equipo no cuenta con relevos.</p>
+                    
+                    <!-- Jugador 5 -->
+                    <div class="sub-bloque-jugador opcional bloque-lista-j" data-jugador="5">
+                        <h3 class="indicador-j">Jugador #5 (Suplente Opcional)</h3>
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo"><label>Nombre Completo</label><input type="text" name="j5_nombre" class="j-nombre" placeholder="(Opcional)"></div>
+                            <div class="grupo-campo"><label>Edad</label><input type="number" name="j5_edad" class="j-edad" min="1" placeholder="(Opcional)" style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);"></div>
+                            <div class="grupo-campo"><label>Cédula de Identidad (CI)</label><input type="text" name="j5_ci" class="j-ci" placeholder="(Opcional)"></div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo"><label>Número de Teléfono</label><input type="tel" name="j5_telefono" class="j-telefono" placeholder="(Opcional)"></div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo"><label>NameTag del Jugador</label><input type="text" name="j5_nametag" class="j-nametag" placeholder="(Opcional)"></div>
+                            <div class="grupo-campo"><label>Código de amigo de Steam</label><input type="text" name="j5_steam" class="j-steam" placeholder="(Opcional)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Jugador 6 -->
+                    <div class="sub-bloque-jugador opcional bloque-lista-j" data-jugador="6">
+                        <h3 class="indicador-j">Jugador #6 (Suplente Opcional)</h3>
+                        <div class="apartado-subtitulo">📋 Información Real</div>
+                        <div class="grid-campos-tres">
+                            <div class="grupo-campo"><label>Nombre Completo</label><input type="text" name="j6_nombre" class="j-nombre" placeholder="(Opcional)"></div>
+                            <div class="grupo-campo"><label>Edad</label><input type="number" name="j6_edad" class="j-edad" min="1" placeholder="(Opcional)" style="width: 100%; padding: 0.85rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(30, 35, 40, 0.7); border-radius: 4px; color: var(--blanco-puro);"></div>
+                            <div class="grupo-campo"><label>Cédula de Identidad (CI)</label><input type="text" name="j6_ci" class="j-ci" placeholder="(Opcional)"></div>
+                        </div>
+                        <div class="grid-campos-dos" style="margin-top: 1rem;">
+                            <div class="grupo-campo"><label>Número de Teléfono</label><input type="tel" name="j6_telefono" class="j-telefono" placeholder="(Opcional)"></div>
+                        </div>
+                        <div class="apartado-subtitulo" style="margin-top: 1.5rem;">🎮 Datos en el Videojuego</div>
+                        <div class="grid-campos-dos">
+                            <div class="grupo-campo"><label>NameTag del Jugador</label><input type="text" name="j6_nametag" class="j-nametag" placeholder="(Opcional)"></div>
+                            <div class="grupo-campo"><label>Código de amigo de Steam</label><input type="text" name="j6_steam" class="j-steam" placeholder="(Opcional)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 05: Apartado de Documentación Legal -->
+                <div class="seccion-bloque">
+                    <h2><span class="numero-t">05</span> Apartado de Documentación Legal</h2>
+                    <p class="nota-suplente">Por favor, suba un archivo comprimido (ZIP/RAR) o PDF que contenga las fotos de las Cédulas de Identidad de toda la nómina.</p>
+                    <div class="campo-comprobante">
+                        <label class="btn-subir-comprobante" for="documentacion-file" style="border-color: #3b82f6;">
+                            📂 Seleccionar Documentación (PDF) *
+                        </label>
+                        <input type="file" id="documentacion-file" name="documentacion_legal" accept=".pdf,.zip,.rar,image/*" required style="display: none;">
+                        <p id="nombre-documento" class="nombre-archivo-texto" style="color: #3b82f6;"></p>
+                    </div>
+                    <div id="doc-preview-contenedor" class="bunker-preview-comprobante" style="display: none; border-left-color: #3b82f6;">
+                        <span class="etiqueta-preview" style="color: #3b82f6;">👁️ DETALLE DE DOCUMENTACIÓN</span>
+                        <div id="doc-preview-render"></div>
+                    </div>
+                </div>
+
+                <!-- PASARELA DE PAGO -->
+                <div class="metodo-pago">
+                    <h3>💵 Pasarela de Pago Seguro</h3>
+                    <p class="instruccion-pago">Escanea el código QR oficial para realizar la transferencia de la inscripción (50 Bs):</p>
+                    <div class="qr-contenedor-grande">
+                        <img src="assets/img/QR.png" alt="Código QR de Pago Oficial" class="qr-imagen-grande">
+                    </div>
+                    <div class="campo-comprobante">
+                        <label class="btn-subir-comprobante" for="comprobante-file">
+                            📸 Seleccionar Comprobante de Pago *
+                        </label>
+                        <input type="file" id="comprobante-file" name="comprobante_pago" accept="image/*" required style="display: none;">
+                        <p id="nombre-archivo" class="nombre-archivo-texto"></p>
+                    </div>
+
+                    <div id="vista-previa-contenedor" class="bunker-preview-comprobante" style="display: none;">
+                        <span class="etiqueta-preview">👁️ VISUALIZACIÓN DEL COMPROBANTE</span>
+                        <img id="img-vista-previa" src="" alt="Vista previa del comprobante">
+                    </div>
+
+                    <div class="terminos-check">
+                        <label>
+                            <input type="checkbox" id="check-terminos" required> Estoy consciente de que leyó las reglas y notificó a todo el equipo.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-enviar-formulario">Inscribirse</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer-principal">
+        <div class="footer-contenedor">
+            <div class="footer-info">
+                <p class="footer-logo">Dilantan<span>Cup</span></p>
+                <p class="copyright">&copy; 2026 Dilantan Cup. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-redes">
+                <span class="titulo-redes">Síguenos</span>
+                <div class="iconos-redes">
+                    <a href="https://discord.gg/XSwYBp6Yd" class="enlace-red" target="_blank" rel="noopener">Discord</a>
+                    <a href="https://www.youtube.com/@dilanterogg8036" class="enlace-red" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://www.tiktok.com/@jessfgamer?is_from_webapp=1&sender_device=pc" class="enlace-red" target="_blank" rel="noopener">Tiktok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/inscripcion.js"></script>
+</body>
+</html>
