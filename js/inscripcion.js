@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // DETECTOR ULTRA REFORZADO DE INSTANCIA DE SUPABASE
     // ==========================================================================
     let supabaseInstancia = null;
-
-    if (typeof supabaseClient !== 'undefined') {
+    if (typeof supabase !== 'undefined') {
+    supabaseInstancia = supabase;
+    } else if (typeof supabaseClient !== 'undefined') {
         supabaseInstancia = supabaseClient;
-    } else if (typeof supabase !== 'undefined') {
-        supabaseInstancia = supabase;
+    }
     } else if (typeof window.supabaseClient !== 'undefined') {
         supabaseInstancia = window.supabaseClient;
     } else if (typeof window.supabase !== 'undefined') {
