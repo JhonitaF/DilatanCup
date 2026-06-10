@@ -1,22 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ==========================================================================
-    // DETECTOR ULTRA REFORZADO DE INSTANCIA DE SUPABASE
-    // ==========================================================================
-    let supabaseInstancia = null;
-    if (typeof supabase !== 'undefined') {
-    supabaseInstancia = supabase;
-    } else if (typeof supabaseClient !== 'undefined') {
-        supabaseInstancia = supabaseClient;
-    }
-    } else if (typeof window.supabaseClient !== 'undefined') {
-        supabaseInstancia = window.supabaseClient;
-    } else if (typeof window.supabase !== 'undefined') {
-        supabaseInstancia = window.supabase;
-    }
+    // Asignación directa del cliente configurado
+    const supabaseInstancia = window.supabaseClient || supabaseClient;
 
     if (!supabaseInstancia) {
-        console.error("⚠️ CRÍTICO: No se detectó ninguna variable global de Supabase.");
+        console.error("⚠️ CRÍTICO: No se detectó la configuración de Supabase.");
         alert("⚠️ ERROR CRÍTICO DEL SISTEMA: La conexión con Supabase no fue inicializada.");
         return; 
     }
@@ -44,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenedorPreview = document.getElementById("vista-previa-contenedor");
     const imgVistaPrevia = document.getElementById("img-vista-previa");
 
-    // ==========================================================================
     // 0. CONTROL DE ACCESO (MODAL DIRECTO)
-    // ==========================================================================
     if (btnAceptarReglas && modal && formulario) {
         btnAceptarReglas.addEventListener("click", () => {
             modal.style.display = "none";       
@@ -54,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================================================
-    // 1. MANEJADORES DE VISTAS PREVIAS (LOGO, DOCS, COMPROBANTE)
-    // ==========================================================================
+    // 1. MANEJADORES DE VISTAS PREVIAS
     if (inputLogo) {
         inputLogo.addEventListener("change", (e) => {
             const file = e.target.files[0];
@@ -120,16 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================================================
-    // 2. FUNCIÓN AUXILIAR PARA LA SUBIDA DE ARCHIVOS A COMPONENTES STORAGE
-    // ==========================================================================
+    // 2. FUNCIÓN AUXILIAR PARA LA SUBIDA DE ARCHIVOS
     async function subirArchivoAlBucket(bucketName, file, prefixName) {
         const ext = file.name.split('.').pop().toLowerCase();
         const hashUnico = Math.random().toString(36).substring(2, 7);
-        // Limpiamos el prefijo para evitar espacios o caracteres que rompan la URL del Storage
-        const prefixLimpio = prefixName.replace(/[^a-zA-Z0-9_-]/g, "_");
-        const nombreArchivoFinal = `${prefixLimpio}_${Date.now()}_${hashUnico}.${ext}`;
+        const nombreArchivoFinal = `${prefixName}_${Date.now()}_${hashUnico}.${ext}`;
 
+        // Acceso directo al almacenamiento de la instancia de Supabase
         const { data, error } = await supabaseInstancia.storage
             .from(bucketName)
             .upload(nombreArchivoFinal, file, { cacheControl: '3600', upsert: false });
@@ -143,9 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return publicUrlData.publicUrl;
     }
 
-    // ==========================================================================
-    // 3. CAPTURA, PROCESAMIENTO Y ENVÍO ESTRUCTURADO HACIA LA NUEVA TABLA
-    // ==========================================================================
+    // 3. CAPTURA Y ENVÍO DEL FORMULARIO
     if (formulario) {
         formulario.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -165,12 +144,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     throw new Error("Es obligatorio adjuntar el Logo del equipo, la Documentación legal y el Comprobante de pago.");
                 }
 
-                // 1. OBTENCIÓN DE IDENTIFICACIÓN DEL EQUIPO
                 const rawNombreEq = document.getElementById("nombre-equipo").value.trim();
                 const tagEquipo = document.getElementById("tag-equipo").value.trim();
                 const cleanName = rawNombreEq.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase();
 
-                // 2. OBTENCIÓN DEL CAPITÁN / JUGADOR #1
                 const capitan = {
                     nombre: document.getElementById("nombre-capitan").value.trim(),
                     edad: parseInt(document.getElementById("edad-capitan").value) || 0,
@@ -180,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     steam: document.getElementById("steam-capitan").value.trim()
                 };
 
-                // 3. OBTENCIÓN DE JUGADORES (Por orden indexado del querySelectorAll)
                 const listaBloquesJugadores = formulario.querySelectorAll(".bloque-lista-j");
                 
                 const extraerJugadorSeguro = (bloque) => {
@@ -204,22 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     };
                 };
 
-                // Asignación correcta de índices del DOM
-                const j2 = extraerJugadorSeguro(listaBloquesJugadores[0]); // Jugador #2
-                const j3 = extraerJugadorSeguro(listaBloquesJugadores[1]); // Jugador #3
-                const j4 = extraerJugadorSeguro(listaBloquesJugadores[2]); // Jugador #4
+                const j2 = extraerJugadorSeguro(listaBloquesJugadores[0]);
+                const j3 = extraerJugadorSeguro(listaBloquesJugadores[1]);
+                const j4 = extraerJugadorSeguro(listaBloquesJugadores[2]);
 
                 if (!j2 || !j3 || !j4) {
                     throw new Error("Por favor rellena todos los campos obligatorios de los Jugadores #2, #3 y #4.");
                 }
 
-                // 4. JUGADORES SUPLENTES OPCIONALES
                 const extraerSuplenteSeguro = (bloque) => {
                     if (!bloque) return { nombre: null, edad: null, ci: null, tel: null, tag: null, steam: null };
-                    
                     const inputNombre = bloque.querySelector(".j-nombre");
                     const nombreVal = inputNombre ? inputNombre.value.trim() : "";
-                    
                     if (!nombreVal) return { nombre: null, edad: null, ci: null, tel: null, tag: null, steam: null };
 
                     const inputEdad = bloque.querySelector(".j-edad");
@@ -238,15 +210,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     };
                 };
 
-                const j5 = extraerSuplenteSeguro(listaBloquesJugadores[3]); // Jugador #5
-                const j6 = extraerSuplenteSeguro(listaBloquesJugadores[4]); // Jugador #6
+                const j5 = extraerSuplenteSeguro(listaBloquesJugadores[3]);
+                const j6 = extraerSuplenteSeguro(listaBloquesJugadores[4]);
 
-                // Subida de archivos multimedia a Supabase Storage (Asegúrate de tener creados estos 3 buckets públicos)
+                // Subidas usando la instancia unificada
                 const uploadLogoUrl = await subirArchivoAlBucket('logos', fileLogo, `${cleanName}_logo`);
                 const uploadDocUrl = await subirArchivoAlBucket('documentos', fileDoc, `${cleanName}_ci`);
                 const uploadPagoUrl = await subirArchivoAlBucket('comprobantes', filePago, `${cleanName}_pago`);
 
-                // Registro final e inserción estructurada en la base de datos (Tabla: inscripciones)
                 const { error: dbError } = await supabaseInstancia
                     .from('inscripciones')
                     .insert([{
@@ -276,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 alert(`🎮 ¡Inscripción Completada! El equipo "${rawNombreEq}" ha sido registrado exitosamente en el torneo.`);
                 
-                // Reseteo total de interfaces y elementos de control
                 formulario.reset();
                 if (contenedorNombreArchivo) contenedorNombreArchivo.textContent = "";
                 if (contenedorNombreLogo) contenedorNombreLogo.textContent = "";
