@@ -1,6 +1,6 @@
-// Leer las variables de entorno configuradas en Vite
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Credenciales directas para compatibilidad total con GitHub Pages
+const SUPABASE_URL = "https://givqeblydihsmkrwnrnf.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Egd_xz9MuKp2UCZLADHeFg_osfAqwGH";
 
 // Inicializar el cliente de Supabase de manera global
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
